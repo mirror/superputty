@@ -152,7 +152,7 @@ namespace SuperPutty
                 }
 
                 if (key != null)
-                {                   
+                {
                     key.SetValue("Host", this.Host);
                     key.SetValue("Port", this.Port);
                     key.SetValue("Proto", this.Proto);
@@ -160,6 +160,8 @@ namespace SuperPutty
                     
                     if(!String.IsNullOrEmpty(this.Username))
                         key.SetValue("Login", this.Username);
+					if (!String.IsNullOrEmpty(this.Password))
+						key.SetValue("Password", SuperPuTTY.EncryptString(this.Password), RegistryValueKind.Binary);
 
                     key.SetValue("Last Path", this.LastPath);
 

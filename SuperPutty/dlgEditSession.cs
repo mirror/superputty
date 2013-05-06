@@ -50,6 +50,7 @@ namespace SuperPutty
                 this.textBoxHostname.Text = Session.Host;
                 this.textBoxPort.Text = Session.Port.ToString();
                 this.textBoxUsername.Text = Session.Username;
+				this.textBoxPassword.Text = Session.Password;
 
                 switch (Session.Proto)
                 {
@@ -112,6 +113,7 @@ namespace SuperPutty
             Session.Host = textBoxHostname.Text.Trim();
             Session.Port = int.Parse(textBoxPort.Text.Trim());
             Session.Username = textBoxUsername.Text.Trim();
+			Session.Password = textBoxPassword.Text.Trim();
 
             for (int i = 0; i < groupBox1.Controls.Count; i++)
             {

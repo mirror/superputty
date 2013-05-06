@@ -37,7 +37,8 @@ namespace SuperPutty
 {
     public partial class SessionTreeview : ToolWindow
     {
-        private DockPanel m_DockPanel;
+		private frmSuperPutty m_Parent;
+		private DockPanel m_DockPanel;
 
         /// <summary>
         /// Instantiate the treeview containing the sessions
@@ -45,8 +46,9 @@ namespace SuperPutty
         /// <param name="dockPanel">The DockPanel container</param>
         /// <remarks>Having the dockpanel container is necessary to allow us to
         /// dock any terminal or file transfer sessions from within the treeview class</remarks>
-        public SessionTreeview(DockPanel dockPanel)
+		public SessionTreeview(frmSuperPutty parent, DockPanel dockPanel)
         {
+			m_Parent = parent;
             m_DockPanel = dockPanel;
             InitializeComponent();
 
@@ -57,6 +59,11 @@ namespace SuperPutty
             LoadSessions();
         }
 
+		bool IsSessionNode(TreeNode node)
+		{
+			return node != null && node.Tag is SessionData;
+		}
+
         /// <summary>
         /// Load the sessions from the registry and populate the treeview control
         /// </summary>
@@ -64,7 +71,7 @@ namespace SuperPutty
         {
             treeView1.Nodes.Clear();
             treeView1.Nodes.Add("root", "PuTTY Sessions", 0);
-            foreach (SessionData session in LoadSessionsFromRegistry())
+            foreach (SessionData session in SuperPuTTY.LoadSessions())
             {
                 TreeNode addedNode = treeView1.Nodes["root"].Nodes.Add(session.SessionName, session.SessionName, 1, 1);
                 addedNode.Tag = session;
@@ -73,44 +80,12 @@ namespace SuperPutty
         }
 
         /// <summary>
-        /// Read any existing saved sessions from the registry, decode and populat a list containing the data
-        /// </summary>
-        /// <returns>A list containing the entries retrieved from the registry</returns>
-        private static List<SessionData> LoadSessionsFromRegistry()
-        {
-            List<SessionData> sessionList = new List<SessionData>();
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Jim Radford\SuperPuTTY\Sessions");
-            if (key != null)
-            {
-                string[] sessionKeys = key.GetSubKeyNames();
-                foreach (string session in sessionKeys)
-                {
-                    SessionData sessionData = new SessionData();
-                    RegistryKey itemKey = key.OpenSubKey(session);
-                    if (itemKey != null)
-                    {
-                        sessionData.Host = (string)itemKey.GetValue("Host", "");
-                        sessionData.Port = (int)itemKey.GetValue("Port", 22);
-                        sessionData.Proto = (ConnectionProtocol)Enum.Parse(typeof(ConnectionProtocol), (string)itemKey.GetValue("Proto", "SSH"));
-                        sessionData.PuttySession = (string)itemKey.GetValue("PuttySession", "Default Session");
-                        sessionData.SessionName = session;
-                        sessionData.Username = (string)itemKey.GetValue("Login", "");
-                        sessionData.LastDockstate = (DockState)itemKey.GetValue("Last Dock", DockState.Document);
-                        sessionData.AutoStartSession = bool.Parse((string)itemKey.GetValue("Auto Start", "False"));
-                        sessionList.Add(sessionData);
-                    }
-                }
-            }
-            return sessionList;
-        }
-
-        /// <summary>
         /// Save sessions from the registry to an XML file for importing later
         /// </summary>
         /// <param name="fileName">The path and name of the file to save the entries to</param>
         public static void ExportSessionsToXml(string fileName)
         {
-            List<SessionData> sessions = LoadSessionsFromRegistry();
+			List<SessionData> sessions = SuperPuTTY.LoadSessions();
             XmlSerializer s = new XmlSerializer(sessions.GetType());
             TextWriter w = new StreamWriter(fileName);
             s.Serialize(w, sessions);
@@ -134,51 +109,24 @@ namespace SuperPutty
             }
         }
 
-        /// <summary>
-        /// Opens the selected session when the node is double clicked in the treeview
-        /// </summary>
-        /// <param name="sender">The treeview control that was double clicked</param>
-        /// <param name="e">An Empty EventArgs object</param>
-        private void treeView1_DoubleClick(object sender, EventArgs e)
-        {
-            if (treeView1.SelectedNode.ImageIndex > 0)
-            {
-                SessionData sessionData = (SessionData)treeView1.SelectedNode.Tag;
-                ctlPuttyPanel sessionPanel = null;
+		/// <summary>
+		/// Opens the selected session when the node is double clicked in the treeview
+		/// </summary>
+		/// <param name="sender">The treeview control that was double clicked</param>
+		/// <param name="e">An Empty EventArgs object</param>
+		private void treeView1_DoubleClick(object sender, EventArgs e)
+		{
+			TreeNode node = this.treeView1.SelectedNode;
+			if (IsSessionNode(node))
+			{
+				SessionData sessionData = (SessionData)node.Tag;
 
-                // This is the callback fired when the panel containing the terminal is closed
-                // We use this to save the last docking location
-                PuttyClosedCallback callback = delegate(bool closed)
-                {
-                    if (sessionPanel != null)
-                    {
-                        // save the last dockstate (if it has been changed)
-                        if (sessionData.LastDockstate != sessionPanel.DockState
-                            && sessionPanel.DockState != DockState.Unknown
-                            && sessionPanel.DockState != DockState.Hidden)
-                        {
-                            sessionData.LastDockstate = sessionPanel.DockState;
-                            sessionData.SaveToRegistry();
-                        }
-
-                        if (sessionPanel.InvokeRequired)
-                        {
-                            this.BeginInvoke((MethodInvoker)delegate()
-                            {
-                                sessionPanel.Close();
-                            });
-                        }
-                        else
-                        {
-                            sessionPanel.Close();
-                        }
-                    }
-                };
-
-                sessionPanel = new ctlPuttyPanel(sessionData, callback);
-                sessionPanel.Show(m_DockPanel, sessionData.LastDockstate);
-            }
-        }
+				ctlPuttyPanel sessionPanel = null;
+				sessionPanel = m_Parent.NewPuttyPanel(sessionData);
+				sessionPanel.Show(m_DockPanel, sessionData.LastDockstate);
+				this.Close();
+			}
+		}
 
         /// <summary>
         /// Create/Update a session entry

@@ -28,98 +28,134 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.newSessionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.duplicateSessionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.clearScrollbackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resetTerminalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.closeSessionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.aboutPuttyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.components = new System.ComponentModel.Container();
+			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.newSessionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.duplicateSessionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+			this.eventLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.restartSessionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.clearScrollbackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.resetTerminalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.copyAllToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.closeSessionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.aboutPuttyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.contextMenuStrip1.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// contextMenuStrip1
+			// 
+			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newSessionToolStripMenuItem,
             this.duplicateSessionToolStripMenuItem,
             this.toolStripSeparator3,
+            this.eventLogToolStripMenuItem,
+            this.restartSessionToolStripMenuItem,
             this.clearScrollbackToolStripMenuItem,
             this.resetTerminalToolStripMenuItem,
+            this.copyAllToClipboardToolStripMenuItem,
             this.toolStripSeparator2,
             this.closeSessionToolStripMenuItem,
             this.toolStripSeparator1,
             this.aboutPuttyToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.ShowImageMargin = false;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(142, 154);
-            // 
-            // newSessionToolStripMenuItem
-            // 
-            this.newSessionToolStripMenuItem.Name = "newSessionToolStripMenuItem";
-            this.newSessionToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
-            this.newSessionToolStripMenuItem.Text = "New Session";
-            // 
-            // duplicateSessionToolStripMenuItem
-            // 
-            this.duplicateSessionToolStripMenuItem.Name = "duplicateSessionToolStripMenuItem";
-            this.duplicateSessionToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
-            this.duplicateSessionToolStripMenuItem.Text = "Duplicate Session";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(138, 6);
-            // 
-            // clearScrollbackToolStripMenuItem
-            // 
-            this.clearScrollbackToolStripMenuItem.Name = "clearScrollbackToolStripMenuItem";
-            this.clearScrollbackToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
-            this.clearScrollbackToolStripMenuItem.Text = "Clear Scrollback";
-            // 
-            // resetTerminalToolStripMenuItem
-            // 
-            this.resetTerminalToolStripMenuItem.Name = "resetTerminalToolStripMenuItem";
-            this.resetTerminalToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
-            this.resetTerminalToolStripMenuItem.Text = "Reset Terminal";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(138, 6);
-            // 
-            // closeSessionToolStripMenuItem
-            // 
-            this.closeSessionToolStripMenuItem.Name = "closeSessionToolStripMenuItem";
-            this.closeSessionToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
-            this.closeSessionToolStripMenuItem.Text = "Close";
-            this.closeSessionToolStripMenuItem.Click += new System.EventHandler(this.closeSessionToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(138, 6);
-            // 
-            // aboutPuttyToolStripMenuItem
-            // 
-            this.aboutPuttyToolStripMenuItem.Name = "aboutPuttyToolStripMenuItem";
-            this.aboutPuttyToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
-            this.aboutPuttyToolStripMenuItem.Text = "About Putty";
-            // 
-            // ctlPuttyPanel
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 264);
-            this.Name = "ctlPuttyPanel";
-            this.TabPageContextMenuStrip = this.contextMenuStrip1;
-            this.Text = "PuTTY Session";
-            this.contextMenuStrip1.ResumeLayout(false);
-            this.ResumeLayout(false);
+			this.contextMenuStrip1.Name = "contextMenuStrip1";
+			this.contextMenuStrip1.ShowImageMargin = false;
+			this.contextMenuStrip1.Size = new System.Drawing.Size(164, 220);
+			this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+			// 
+			// newSessionToolStripMenuItem
+			// 
+			this.newSessionToolStripMenuItem.Name = "newSessionToolStripMenuItem";
+			this.newSessionToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+			this.newSessionToolStripMenuItem.Text = "New Session";
+			// 
+			// duplicateSessionToolStripMenuItem
+			// 
+			this.duplicateSessionToolStripMenuItem.Name = "duplicateSessionToolStripMenuItem";
+			this.duplicateSessionToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+			this.duplicateSessionToolStripMenuItem.Text = "Duplicate Session";
+			this.duplicateSessionToolStripMenuItem.Click += new System.EventHandler(this.duplicateSessionTSMI_Click);
+			// 
+			// toolStripSeparator3
+			// 
+			this.toolStripSeparator3.Name = "toolStripSeparator3";
+			this.toolStripSeparator3.Size = new System.Drawing.Size(160, 6);
+			// 
+			// eventLogToolStripMenuItem
+			// 
+			this.eventLogToolStripMenuItem.Name = "eventLogToolStripMenuItem";
+			this.eventLogToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+			this.eventLogToolStripMenuItem.Tag = "0x0010";
+			this.eventLogToolStripMenuItem.Text = "Event Log";
+			this.eventLogToolStripMenuItem.Click += new System.EventHandler(this.puTTYMenuTSMI_Click);
+			// 
+			// restartSessionToolStripMenuItem
+			// 
+			this.restartSessionToolStripMenuItem.Name = "restartSessionToolStripMenuItem";
+			this.restartSessionToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+			this.restartSessionToolStripMenuItem.Tag = "0x0040";
+			this.restartSessionToolStripMenuItem.Text = "Restart Session";
+			this.restartSessionToolStripMenuItem.Click += new System.EventHandler(this.puTTYMenuTSMI_Click);
+			// 
+			// clearScrollbackToolStripMenuItem
+			// 
+			this.clearScrollbackToolStripMenuItem.Name = "clearScrollbackToolStripMenuItem";
+			this.clearScrollbackToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+			this.clearScrollbackToolStripMenuItem.Tag = "0x0060";
+			this.clearScrollbackToolStripMenuItem.Text = "Clear Scrollback";
+			this.clearScrollbackToolStripMenuItem.Click += new System.EventHandler(this.puTTYMenuTSMI_Click);
+			// 
+			// resetTerminalToolStripMenuItem
+			// 
+			this.resetTerminalToolStripMenuItem.Name = "resetTerminalToolStripMenuItem";
+			this.resetTerminalToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+			this.resetTerminalToolStripMenuItem.Tag = "0x0070";
+			this.resetTerminalToolStripMenuItem.Text = "Reset Terminal";
+			this.resetTerminalToolStripMenuItem.Click += new System.EventHandler(this.puTTYMenuTSMI_Click);
+			// 
+			// copyAllToClipboardToolStripMenuItem
+			// 
+			this.copyAllToClipboardToolStripMenuItem.Name = "copyAllToClipboardToolStripMenuItem";
+			this.copyAllToClipboardToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+			this.copyAllToClipboardToolStripMenuItem.Tag = "0x0170";
+			this.copyAllToClipboardToolStripMenuItem.Text = "Copy All to Clipboard";
+			this.copyAllToClipboardToolStripMenuItem.Click += new System.EventHandler(this.puTTYMenuTSMI_Click);
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(160, 6);
+			// 
+			// closeSessionToolStripMenuItem
+			// 
+			this.closeSessionToolStripMenuItem.Name = "closeSessionToolStripMenuItem";
+			this.closeSessionToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+			this.closeSessionToolStripMenuItem.Text = "Close";
+			this.closeSessionToolStripMenuItem.Click += new System.EventHandler(this.closeSessionToolStripMenuItem_Click);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(160, 6);
+			// 
+			// aboutPuttyToolStripMenuItem
+			// 
+			this.aboutPuttyToolStripMenuItem.Name = "aboutPuttyToolStripMenuItem";
+			this.aboutPuttyToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+			this.aboutPuttyToolStripMenuItem.Text = "About Putty";
+			// 
+			// ctlPuttyPanel
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(584, 262);
+			this.Name = "ctlPuttyPanel";
+			this.TabPageContextMenuStrip = this.contextMenuStrip1;
+			this.Text = "PuTTY Session";
+			this.contextMenuStrip1.ResumeLayout(false);
+			this.ResumeLayout(false);
 
         }
 
@@ -134,7 +170,10 @@
         private System.Windows.Forms.ToolStripMenuItem aboutPuttyToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripMenuItem copyAllToClipboardToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem eventLogToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem restartSessionToolStripMenuItem;
 
     }
 }
